@@ -2,7 +2,6 @@
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('nav-menu');
 const navLinks = document.querySelectorAll('.nav-link');
-const contactForm = document.getElementById('contact-form');
 const nav = document.querySelector('.nav');
 
 // Mobile Navigation Toggle
@@ -90,108 +89,7 @@ staggerGroups.forEach(group => {
     });
 });
 
-// Contact Form Handling
-contactForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Get form data
-    const formData = new FormData(contactForm);
-    const data = Object.fromEntries(formData);
-    
-    // Basic validation
-    if (!data.name || !data.email || !data.service || !data.message) {
-        showFormMessage('Please fill in all required fields.', 'error');
-        return;
-    }
-    
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(data.email)) {
-        showFormMessage('Please enter a valid email address.', 'error');
-        return;
-    }
-    
-    // Length validation
-    if (data.name.length < 2) {
-        showFormMessage('Name must be at least 2 characters.', 'error');
-        return;
-    }
-    
-    if (data.message.length < 10) {
-        showFormMessage('Message must be at least 10 characters.', 'error');
-        return;
-    }
-    
-    const submitBtn = contactForm.querySelector('button[type="submit"]');
-    const originalText = submitBtn.textContent;
-    
-    submitBtn.textContent = 'Sending...';
-    submitBtn.disabled = true;
-    
-    // Send to PHP handler
-    fetch('contact-handler.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data)
-    })
-    .then(response => response.json())
-    .then(result => {
-        if (result.success) {
-            showFormMessage(result.message, 'success');
-            contactForm.reset();
-        } else {
-            showFormMessage(result.message, 'error');
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        showFormMessage('Sorry, there was an error sending your message. Please try again.', 'error');
-    })
-    .finally(() => {
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-    });
-});
-
-// Form message display
-function showFormMessage(message, type) {
-    // Remove existing message
-    const existingMessage = document.querySelector('.form-message');
-    if (existingMessage) {
-        existingMessage.remove();
-    }
-    
-    // Create new message
-    const messageDiv = document.createElement('div');
-    messageDiv.className = `form-message form-message-${type}`;
-    messageDiv.textContent = message;
-    
-    // Style the message
-    messageDiv.style.cssText = `
-        padding: 16px;
-        border-radius: 8px;
-        margin-top: 16px;
-        font-weight: 500;
-        text-align: center;
-        animation: fadeIn 0.3s ease-in-out;
-        ${type === 'success' ? 
-            'background: #10b981; color: white;' : 
-            'background: #ef4444; color: white;'
-        }
-    `;
-    
-    contactForm.appendChild(messageDiv);
-    
-    // Remove message after 5 seconds
-    setTimeout(() => {
-        if (messageDiv) {
-            messageDiv.style.opacity = '0';
-            setTimeout(() => messageDiv.remove(), 300);
-        }
-    }, 5000);
-}
+// Netlify handles form submission automatically - no custom JavaScript needed!
 
 // Add CSS for form message animation
 const style = document.createElement('style');

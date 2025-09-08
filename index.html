@@ -262,23 +262,23 @@
                         </div>
                     </div>
                 </div>
-                <form class="contact-form" id="contact-form">
-                    <!-- Honeypot field for spam protection -->
+                <form class="contact-form" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+                    <!-- Netlify honeypot field -->
                     <div style="position: absolute; left: -9999px;">
-                        <input type="text" name="website" tabindex="-1" autocomplete="off">
+                        <input name="bot-field" tabindex="-1" autocomplete="off">
                     </div>
                     
                     <div class="form-group">
-                        <input type="text" id="name" name="name" placeholder="Your name" required>
+                        <input type="text" name="name" placeholder="Your name" required>
                     </div>
                     <div class="form-group">
-                        <input type="email" id="email" name="email" placeholder="Email address" required>
+                        <input type="email" name="email" placeholder="Email address" required>
                     </div>
                     <div class="form-group">
-                        <input type="text" id="company" name="company" placeholder="Company name">
+                        <input type="text" name="company" placeholder="Company name">
                     </div>
                     <div class="form-group">
-                        <select id="service" name="service" required>
+                        <select name="service" required>
                             <option value="">What do you need help with?</option>
                             <option value="website">New Website</option>
                             <option value="app">Web Application</option>
@@ -288,7 +288,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <textarea id="message" name="message" placeholder="Tell us about your project" rows="5" required></textarea>
+                        <textarea name="message" placeholder="Tell us about your project" rows="5" required></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary btn-full">Send Message</button>
                 </form>
