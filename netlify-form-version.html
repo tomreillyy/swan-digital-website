@@ -1,0 +1,31 @@
+<!-- Replace your contact form with this for Netlify deployment -->
+<form class="contact-form" id="contact-form" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+    <!-- Honeypot field -->
+    <div style="position: absolute; left: -9999px;">
+        <input name="bot-field" tabindex="-1" autocomplete="off">
+    </div>
+    
+    <div class="form-group">
+        <input type="text" name="name" placeholder="Your name" required>
+    </div>
+    <div class="form-group">
+        <input type="email" name="email" placeholder="Email address" required>
+    </div>
+    <div class="form-group">
+        <input type="text" name="company" placeholder="Company name">
+    </div>
+    <div class="form-group">
+        <select name="service" required>
+            <option value="">What do you need help with?</option>
+            <option value="website">New Website</option>
+            <option value="app">Web Application</option>
+            <option value="ecommerce">E-commerce Store</option>
+            <option value="consultation">Technical Consultation</option>
+            <option value="other">Something Else</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <textarea name="message" placeholder="Tell us about your project" rows="5" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary btn-full">Send Message</button>
+</form>
