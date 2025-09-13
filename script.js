@@ -47,11 +47,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Navbar background on scroll
 window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
-        nav.style.background = 'rgba(255, 255, 255, 0.98)';
-        nav.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
+        nav.style.background = 'rgba(31, 41, 53, 0.98)';
+        nav.style.boxShadow = '0 4px 6px -1px rgba(31, 41, 53, 0.3)';
     } else {
-        nav.style.background = 'rgba(255, 255, 255, 0.95)';
-        nav.style.boxShadow = 'none';
+        nav.style.background = 'rgba(31, 41, 53, 1)';
+        nav.style.boxShadow = '0 2px 10px rgba(31, 41, 53, 0.3)';
     }
 });
 
@@ -89,7 +89,6 @@ staggerGroups.forEach(group => {
     });
 });
 
-// Netlify handles form submission automatically - no custom JavaScript needed!
 
 // Add CSS for form message animation
 const style = document.createElement('style');
@@ -225,4 +224,4 @@ window.addEventListener('scroll', () => {
     }
 });
 
-console.log('Swan Digital website loaded successfully! 🦢');
+console.log('Trove Digital website loaded successfully!');

@@ -1,6 +1,6 @@
-# Swan Digital Website
+# Trove Digital Website
 
-Professional website for Swan Digital - a web development consultancy specializing in modern websites and applications for SME businesses in Perth, Western Australia.
+Professional website for Trove Digital - a web development consultancy specializing in modern websites and applications for SME businesses in Perth, Western Australia.
 
 ## Features
 
@@ -34,4 +34,4 @@ For form testing, use a local PHP server like XAMPP.
 
 ---
 
-Built with precision and attention to detail by Swan Digital.
+Built with precision and attention to detail by Trove Digital.
