@@ -3,8 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trove Digital - Web Development & Design in Perth</title>
-    <meta name="description" content="Trove Digital delivers bespoke technology and digital solutions for Perth businesses - from cutting-edge websites and custom applications to AI implementation and automation tools.">
+    <title>Trove Digital - Web Development & Design in Perth | Custom Business Applications</title>
+    <meta name="description" content="Professional websites and custom applications for growing Perth businesses. We help small to medium businesses establish strong online presence and streamline operations with modern digital solutions.">
+    <meta name="keywords" content="web development Perth, custom applications Perth, website design Perth, digital solutions Perth, business automation, AI implementation, Perth web developer">
+    <meta name="author" content="Trove Digital">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://trovedigital.com.au/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://trovedigital.com.au/">
+    <meta property="og:title" content="Trove Digital - Web Development & Design in Perth">
+    <meta property="og:description" content="Professional websites and custom applications for growing Perth businesses. Modern digital solutions that help you attract customers and streamline operations.">
+    <meta property="og:image" content="https://trovedigital.com.au/trove-digital-logo.png">
+    <meta property="og:locale" content="en_AU">
+    <meta property="og:site_name" content="Trove Digital">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://trovedigital.com.au/">
+    <meta property="twitter:title" content="Trove Digital - Web Development & Design in Perth">
+    <meta property="twitter:description" content="Professional websites and custom applications for growing Perth businesses. Modern digital solutions that help you attract customers and streamline operations.">
+    <meta property="twitter:image" content="https://trovedigital.com.au/trove-digital-logo.png">
+
+    <!-- Local Business Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Trove Digital",
+      "description": "Professional websites and custom applications for growing Perth businesses",
+      "url": "https://trovedigital.com.au",
+      "logo": "https://trovedigital.com.au/trove-digital-logo.png",
+      "image": "https://trovedigital.com.au/trove-digital-logo.png",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Perth",
+        "addressRegion": "WA",
+        "addressCountry": "AU"
+      },
+      "areaServed": {
+        "@type": "State",
+        "name": "Western Australia"
+      },
+      "serviceArea": {
+        "@type": "State",
+        "name": "Western Australia"
+      },
+      "priceRange": "$$",
+      "telephone": "",
+      "email": "tom@trovedigital.com.au",
+      "foundingDate": "2025",
+      "founder": {
+        "@type": "Person",
+        "name": "Tom"
+      },
+      "sameAs": []
+    }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -161,7 +217,7 @@
                         </div>
                     </div>
                 </div>
-                <form class="contact-form" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action="/success" netlify-emails="tom@trovedigital.com.au">
+                <form class="contact-form" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action="/success.html" netlify-emails="tom@trovedigital.com.au">
                     <!-- Netlify honeypot field -->
                     <div style="position: absolute; left: -9999px;">
                         <input name="bot-field" tabindex="-1" autocomplete="off">
@@ -174,21 +230,17 @@
                         <input type="email" name="email" placeholder="Email address" required>
                     </div>
                     <div class="form-group">
-                        <input type="text" name="company" placeholder="Company name">
-                    </div>
-                    <div class="form-group">
-                        <select name="service" required>
-                            <option value="">What technology challenge can we solve?</option>
-                            <option value="ai">AI Implementation & Automation</option>
-                            <option value="app">Custom Application Development</option>
-                            <option value="transformation">Digital Transformation</option>
-                            <option value="integration">System Integration & APIs</option>
-                            <option value="consultation">Technology Strategy Consultation</option>
-                            <option value="other">Something Innovative</option>
+                        <select name="service">
+                            <option value="">What can we help you with? (optional)</option>
+                            <option value="website">Professional Website</option>
+                            <option value="application">Custom Application</option>
+                            <option value="automation">Automation & AI</option>
+                            <option value="consultation">Strategy & Consultation</option>
+                            <option value="other">Something Else</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <textarea name="message" placeholder="Tell us about your project" rows="5" required></textarea>
+                        <textarea name="message" placeholder="Tell us about your project (optional)" rows="4"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary btn-full">Send Message</button>
                 </form>
