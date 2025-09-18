@@ -224,54 +224,6 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Simple form with inline success message
-document.addEventListener('DOMContentLoaded', () => {
-    const contactForm = document.querySelector('.contact-form');
-
-    if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            const submitBtn = contactForm.querySelector('button[type="submit"]');
-            const formData = new FormData(contactForm);
-
-            // Show loading state
-            submitBtn.textContent = 'Sending...';
-            submitBtn.disabled = true;
-
-            // Submit to Netlify without redirect
-            fetch('/', {
-                method: 'POST',
-                headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                body: new URLSearchParams({
-                    'form-name': 'contact',
-                    ...Object.fromEntries(formData)
-                }).toString()
-            }).then(() => {
-                // Show success message
-                showSuccessMessage();
-            }).catch(() => {
-                // Reset button on error
-                submitBtn.textContent = 'Send Message';
-                submitBtn.disabled = false;
-                alert('Sorry, there was an error. Please try again.');
-            });
-        });
-    }
-});
-
-function showSuccessMessage() {
-    const contactForm = document.querySelector('.contact-form');
-
-    contactForm.innerHTML = `
-        <div style="text-align: center; padding: 3rem 2rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 16px; color: white;">
-            <div style="font-size: 3rem; margin-bottom: 1rem;">✅</div>
-            <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Message sent successfully!</h3>
-            <p style="margin-bottom: 1.5rem; opacity: 0.9;">Thanks for reaching out! We'll get back to you within 24 hours.</p>
-            <button onclick="location.reload()" style="background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); color: white; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer; font-weight: 500;">Send Another Message</button>
-        </div>
-    `;
-}
 
 
 console.log('Trove Digital website loaded successfully!');
