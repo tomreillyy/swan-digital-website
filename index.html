@@ -9,18 +9,20 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="logo-icon-no.text.png">
 </head>
-<body>
+<body id="top">
     <div class="scroll-progress"></div>
     <nav class="nav">
         <div class="nav-container">
             <div class="logo">
-                <img src="trove-digital-logo.png" alt="Trove Digital" class="logo-img">
+                <a href="#top">
+                    <img src="trove-digital-logo.png" alt="Trove Digital" class="logo-img">
+                </a>
             </div>
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#services" class="nav-link">Services</a></li>
-                <li><a href="#work" class="nav-link">Work</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
             <div class="hamburger" id="hamburger">
@@ -42,7 +44,7 @@
                 </p>
                 <div class="hero-actions">
                     <a href="#contact" class="btn btn-primary">Start Your Project</a>
-                    <a href="#work" class="btn btn-outline">View Our Work</a>
+                    <a href="#contact" class="btn btn-outline">Get In Touch</a>
                 </div>
             </div>
         </div>
@@ -142,45 +144,6 @@
         </div>
     </section>
 
-    <section id="work" class="work">
-        <div class="container">
-            <div class="section-header">
-                <h2>Our recent work</h2>
-                <p>See how we've helped Perth businesses establish their online presence and grow.</p>
-            </div>
-            <div class="work-grid">
-                <div class="work-item">
-                    <div class="work-preview">
-                        <div class="work-mockup">
-                            <div class="mockup-browser">
-                                <div class="browser-bar">
-                                    <div class="browser-dots">
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                    </div>
-                                </div>
-                                <div class="mockup-content mockup-hps">
-                                    <img src="assets/portfolio/HPS (Hire logo).jpg" alt="HPS Recruitment" class="client-logo">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="work-details">
-                        <h3>HPS Recruitment</h3>
-                        <p>Professional website with integrated job board, candidate application system, and content management - helping them attract top talent and clients.</p>
-                        <span class="work-type">Website Development</span>
-                        <a href="https://hpsrecruitment.com.au/" target="_blank" class="work-link">View Live Site</a>
-                    </div>
-                </div>
-            </div>
-            <div class="work-cta">
-                <h3>Ready to be our next success story?</h3>
-                <p>Let's discuss how we can help your business grow with a professional website or custom application.</p>
-                <a href="#contact" class="btn btn-primary">Start Your Project</a>
-            </div>
-        </div>
-    </section>
 
 
     <section id="contact" class="contact">
@@ -195,12 +158,10 @@
                             <p>Perth, Western Australia</p>
                         </div>
                         <div class="contact-item">
-                            <strong>Response Time</strong>
-                            <p>Within 24 hours</p>
                         </div>
                     </div>
                 </div>
-                <form class="contact-form" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+                <form class="contact-form" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action="/success" netlify-emails="tom@trovedigital.com.au">
                     <!-- Netlify honeypot field -->
                     <div style="position: absolute; left: -9999px;">
                         <input name="bot-field" tabindex="-1" autocomplete="off">
@@ -241,7 +202,8 @@
                 <div class="footer-logo">
                     <img src="trove-digital-logo.png" alt="Trove Digital" class="logo-img">
                 </div>
-                <p>&copy; 2025 Trove Digital. Delivering bespoke technology solutions in Perth, Western Australia.</p>
+                <p>&copy; 2025 Trove Digital. Delivering bespoke technology solutions in Perth, Western Australia.<br>
+                   <small>ACN: 690 833 357</small></p>
             </div>
         </div>
     </footer>
