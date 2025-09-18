@@ -224,4 +224,214 @@ window.addEventListener('scroll', () => {
     }
 });
 
+// Contact form handling with success animation
+document.addEventListener('DOMContentLoaded', () => {
+    const contactForm = document.querySelector('.contact-form');
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const formData = new FormData(contactForm);
+
+            // Show loading state
+            const originalBtnText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+
+            try {
+                // Submit to Netlify
+                const response = await fetch('/', {
+                    method: 'POST',
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: new URLSearchParams(formData).toString()
+                });
+
+                if (response.ok) {
+                    // Show success animation
+                    showSuccessAnimation();
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (error) {
+                // Show error message
+                showErrorMessage();
+                submitBtn.textContent = originalBtnText;
+                submitBtn.disabled = false;
+            }
+        });
+    }
+});
+
+function showSuccessAnimation() {
+    const contactForm = document.querySelector('.contact-form');
+    const contactSection = document.querySelector('.contact');
+
+    // Create success message
+    const successDiv = document.createElement('div');
+    successDiv.className = 'success-animation';
+    successDiv.innerHTML = `
+        <div class="success-content">
+            <div class="checkmark-wrapper">
+                <svg class="checkmark" width="52" height="52" viewBox="0 0 52 52">
+                    <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                    <path class="checkmark-check" fill="none" d="m14.1 27.2l7.1 7.2 16.7-16.8"/>
+                </svg>
+            </div>
+            <h3>Message sent successfully! 🎉</h3>
+            <p>Thanks for reaching out! We'll get back to you within 24 hours.</p>
+            <button class="send-another-btn">Send Another Message</button>
+        </div>
+    `;
+
+    // Add CSS for the animation
+    const style = document.createElement('style');
+    style.textContent = `
+        .success-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: scale(0.8);
+            animation: successSlideIn 0.6s ease-out forwards;
+            z-index: 10;
+        }
+
+        @keyframes successSlideIn {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .success-content {
+            text-align: center;
+            color: white;
+            padding: 2rem;
+        }
+
+        .checkmark-wrapper {
+            margin-bottom: 1.5rem;
+        }
+
+        .checkmark {
+            width: 52px;
+            height: 52px;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .checkmark-circle {
+            stroke-dasharray: 166;
+            stroke-dashoffset: 166;
+            stroke-width: 2;
+            stroke-miterlimit: 10;
+            stroke: white;
+            animation: checkmark-stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+        }
+
+        .checkmark-check {
+            transform-origin: 50% 50%;
+            stroke-dasharray: 48;
+            stroke-dashoffset: 48;
+            stroke-width: 3;
+            stroke: white;
+            animation: checkmark-stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+        }
+
+        @keyframes checkmark-stroke {
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        .success-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .success-content p {
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .send-another-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .send-another-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-1px);
+        }
+    `;
+
+    if (!document.querySelector('.success-animation-styles')) {
+        style.className = 'success-animation-styles';
+        document.head.appendChild(style);
+    }
+
+    // Make contact form container relative for absolute positioning
+    contactForm.style.position = 'relative';
+
+    // Add success message
+    contactForm.appendChild(successDiv);
+
+    // Handle send another message
+    const sendAnotherBtn = successDiv.querySelector('.send-another-btn');
+    sendAnotherBtn.addEventListener('click', () => {
+        successDiv.remove();
+        contactForm.reset();
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        submitBtn.textContent = 'Send Message';
+        submitBtn.disabled = false;
+    });
+}
+
+function showErrorMessage() {
+    const contactForm = document.querySelector('.contact-form');
+
+    // Remove any existing error messages
+    const existingError = contactForm.querySelector('.error-message');
+    if (existingError) {
+        existingError.remove();
+    }
+
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'error-message';
+    errorDiv.style.cssText = `
+        background: #fee2e2;
+        color: #dc2626;
+        padding: 1rem;
+        border-radius: 8px;
+        margin-top: 1rem;
+        text-align: center;
+        animation: fadeIn 0.3s ease;
+    `;
+    errorDiv.textContent = 'Sorry, there was an error sending your message. Please try again.';
+
+    contactForm.appendChild(errorDiv);
+
+    // Remove error message after 5 seconds
+    setTimeout(() => {
+        errorDiv.remove();
+    }, 5000);
+}
+
 console.log('Trove Digital website loaded successfully!');
