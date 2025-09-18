@@ -229,7 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const contactForm = document.querySelector('.contact-form');
 
     if (contactForm) {
-        contactForm.addEventListener('submit', async (e) => {
+        contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
             const submitBtn = contactForm.querySelector('button[type="submit"]');
@@ -240,28 +240,37 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.textContent = 'Sending...';
             submitBtn.disabled = true;
 
-            try {
-                // Submit to Netlify
-                const response = await fetch('/', {
-                    method: 'POST',
-                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                    body: new URLSearchParams({
-                        'form-name': 'contact',
-                        ...Object.fromEntries(formData)
-                    }).toString()
-                });
+            // Create a hidden form and submit it to Netlify
+            const hiddenForm = document.createElement('form');
+            hiddenForm.style.display = 'none';
+            hiddenForm.method = 'POST';
+            hiddenForm.setAttribute('data-netlify', 'true');
+            hiddenForm.name = 'contact';
 
-                if (response.ok) {
-                    // Show success animation
+            // Add all form data to hidden form
+            for (let [key, value] of formData.entries()) {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = key;
+                input.value = value;
+                hiddenForm.appendChild(input);
+            }
+
+            document.body.appendChild(hiddenForm);
+
+            // Submit the form and show success animation
+            try {
+                hiddenForm.submit();
+                // Show success animation immediately since Netlify handles the submission
+                setTimeout(() => {
                     showSuccessAnimation();
-                } else {
-                    throw new Error('Form submission failed');
-                }
+                    document.body.removeChild(hiddenForm);
+                }, 500);
             } catch (error) {
-                // Show error message
                 showErrorMessage();
                 submitBtn.textContent = originalBtnText;
                 submitBtn.disabled = false;
+                document.body.removeChild(hiddenForm);
             }
         });
     }
