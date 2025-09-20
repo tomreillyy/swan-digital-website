@@ -74,12 +74,17 @@ a{color:inherit;text-decoration:none}
 
 /* Mobile navigation */
 @media (max-width: 768px) {
-  .topbar { top:12px; right:12px; left:12px; gap:12px; }
+  .topbar { top:12px; right:12px; left:12px; gap:12px; padding:8px 0; }
   .nav-logo img { height:34px; }
-  .nav-right { gap:12px; flex-wrap:wrap; }
-  .nav-link { font-size:13px; }
-  .icon-toggle { width:32px; height:32px; }
-  .icon-toggle svg { width:16px; height:16px; }
+  .nav-right { gap:14px; flex-wrap:wrap; }
+  .nav-link { font-size:13px; padding:8px 6px; min-width:48px; text-align:center; border-radius:6px; }
+  .nav-link:hover { background:var(--hair); }
+  .icon-toggle { width:40px; height:40px; }
+  .icon-toggle svg { width:20px; height:20px; }
+}
+@media (max-width: 480px) {
+  .nav-right { justify-content:center; width:100%; }
+  .nav-link { font-size:12px; padding:6px 4px; min-width:42px; }
 }
 
 .header{
@@ -127,6 +132,9 @@ a{color:inherit;text-decoration:none}
   max-width:900px;margin:0 auto;
   display:grid;gap:42px;
 }
+@media (max-width: 480px) {
+  .services { gap:32px; }
+}
 .service{text-align:center;}
 .service h2{
   font-family:'Playfair Display',serif;
@@ -137,6 +145,10 @@ a{color:inherit;text-decoration:none}
   color:var(--muted);
   font-size:clamp(15px,2vw,18px);
   margin:0 auto;max-width:60ch;
+}
+@media (max-width: 480px) {
+  .service h2 { font-size:clamp(22px,7.5vw,28px); }
+  .service p { font-size:clamp(14px,4vw,16px); max-width:none; }
 }
 
 .cta{
@@ -170,50 +182,72 @@ footer{
   color:var(--muted);
 }
 
-/* Mobile improvements for services page */
+/* Enhanced mobile experience */
 @media (max-width: 768px) {
   .header {
-    padding:clamp(50px,10vw,80px) clamp(20px,5vw,40px);
+    padding:clamp(60px,12vw,90px) clamp(20px,5vw,40px);
+    min-height:80vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
   }
   .header h1 {
-    font-size:clamp(32px,10vw,56px);
+    font-size:clamp(36px,12vw,64px);
+    line-height:1.1;
+    margin-bottom:16px;
   }
   .header p {
-    font-size:clamp(15px,4vw,18px);
+    font-size:clamp(16px,4.5vw,20px);
+    line-height:1.4;
+    margin:0 auto 32px auto;
   }
   .wave {
-    height:100px;
-    margin:30px auto 0 auto;
+    height:120px;
+    margin:32px auto 0 auto;
+    flex-shrink:0;
   }
   .scroll-cue {
-    bottom:15px;
+    bottom:20px;
+    opacity:0.8;
   }
   .scroll-cue svg {
-    width:24px;
-    height:24px;
+    width:26px;
+    height:26px;
   }
   .services {
-    padding:clamp(30px,6vw,60px) clamp(20px,5vw,40px);
-    gap:32px;
+    padding:clamp(40px,8vw,80px) clamp(20px,5vw,40px);
+    gap:40px;
+  }
+  .service {
+    padding:20px 0;
   }
   .service h2 {
-    font-size:clamp(22px,7vw,32px);
+    font-size:clamp(24px,8vw,36px);
+    margin-bottom:16px;
+    line-height:1.2;
   }
   .service p {
-    font-size:clamp(14px,3.5vw,16px);
+    font-size:clamp(15px,4vw,18px);
+    line-height:1.5;
+    margin:0 auto;
   }
   .cta {
-    height:48px;
-    padding:0 24px;
-    font-size:15px;
-    margin:40px auto 0 auto;
+    height:52px;
+    padding:0 28px;
+    font-size:16px;
+    margin:48px auto 0 auto;
+    min-width:200px;
+    border-radius:16px;
   }
   footer {
-    padding:48px clamp(20px,5vw,40px);
+    padding:56px clamp(20px,5vw,40px);
     flex-direction:column;
     text-align:center;
-    gap:16px;
-    font-size:14px;
+    gap:20px;
+    font-size:15px;
+  }
+  footer nav {
+    margin-top:8px;
   }
 }
 </style>
@@ -251,16 +285,23 @@ footer{
 
   <svg class="wave" viewBox="0 0 1000 140" preserveAspectRatio="none">
     <defs>
-      <linearGradient id="g" x1="0" x2="1" y1="0" y2="0">
-        <stop offset="0%" stop-color="currentColor" stop-opacity=".2"/>
-        <stop offset="50%" stop-color="currentColor" stop-opacity=".7"/>
-        <stop offset="100%" stop-color="currentColor" stop-opacity=".2"/>
+      <linearGradient id="g1" x1="0" x2="1" y1="0" y2="0">
+        <stop offset="0%" id="g1-start" stop-color="#6f64ff" stop-opacity=".8"/>
+        <stop offset="100%" id="g1-end" stop-color="#ff6b8a" stop-opacity=".8"/>
+      </linearGradient>
+      <linearGradient id="g2" x1="0" x2="1" y1="0" y2="0">
+        <stop offset="0%" id="g2-start" stop-color="#5b4dff" stop-opacity=".6"/>
+        <stop offset="100%" id="g2-end" stop-color="#ffa6a6" stop-opacity=".6"/>
+      </linearGradient>
+      <linearGradient id="g3" x1="0" x2="1" y1="0" y2="0">
+        <stop offset="0%" id="g3-start" stop-color="#9a92ff" stop-opacity=".4"/>
+        <stop offset="100%" id="g3-end" stop-color="#ff8aa1" stop-opacity=".4"/>
       </linearGradient>
       <filter id="soft"><feGaussianBlur in="SourceGraphic" stdDeviation="1.2"/></filter>
     </defs>
-    <path id="p1" d="" stroke="url(#g)" stroke-width="2" fill="none" filter="url(#soft)"/>
-    <path id="p2" d="" stroke="url(#g)" stroke-width="1" fill="none" opacity=".7"/>
-    <path id="p3" d="" stroke="url(#g)" stroke-width="1.4" fill="none" opacity=".5"/>
+    <path id="p1" d="" stroke="url(#g1)" stroke-width="2" fill="none" filter="url(#soft)"/>
+    <path id="p2" d="" stroke="url(#g2)" stroke-width="1" fill="none"/>
+    <path id="p3" d="" stroke="url(#g3)" stroke-width="1.4" fill="none"/>
   </svg>
 
   <!-- subtle scroll indicator -->
@@ -304,18 +345,36 @@ footer{
         t=document.getElementById('themeToggle'),
         s=document.getElementById('icon-sun'),
         m=document.getElementById('icon-moon');
+
+  // Wave color palettes matching homepage
+  const palDark=[['#6f64ff','#ff6b8a'],['#5b4dff','#ffa6a6'],['#9a92ff','#ff8aa1']];
+  const palLight=[['#5d6cff','#ff7a98'],['#4c57ff','#ff8fa9'],['#85a0ff','#ff95ad']];
+
+  function applyWaveTheme(theme) {
+    const pal = theme === 'light' ? palLight : palDark;
+    const opacities = ['.8', '.6', '.4'];
+    pal.forEach(([c1, c2], i) => {
+      const gradientNum = i + 1;
+      document.getElementById(`g${gradientNum}-start`).setAttribute('stop-color', c1);
+      document.getElementById(`g${gradientNum}-end`).setAttribute('stop-color', c2);
+    });
+  }
+
   const saved=localStorage.getItem('trove-theme');
   const system=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';
   const initial=saved||system;
   root.setAttribute('data-theme',initial);
   s.style.display=initial==='light'?'block':'none';
   m.style.display=initial==='light'?'none':'block';
+  applyWaveTheme(initial);
+
   t.addEventListener('click',()=>{
     const next=root.getAttribute('data-theme')==='light'?'dark':'light';
     root.setAttribute('data-theme',next);
     localStorage.setItem('trove-theme',next);
     s.style.display=next==='light'?'block':'none';
     m.style.display=next==='light'?'none':'block';
+    applyWaveTheme(next);
   });
 })();
 

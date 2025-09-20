@@ -16,6 +16,7 @@
       --panel:#101015; --hair:#ffffff26;
       --accent:#6f64ff; --accent-2:#ff6b8a;
       --block:28px;
+      --bg-rgb:10, 10, 12;
 
       /* CTA — primary */
       --cta-fg:#0b0e14;
@@ -31,6 +32,7 @@
       --bg:#ffffff; --fg:#0b0e14; --fg-soft:#111318; --muted:#2d313c;
       --panel:#ffffff; --hair:#00000022;
       --accent:#4c57ff; --accent-2:#ff5f8b;
+      --bg-rgb:255, 255, 255;
 
       --cta-fg:#0b0e14;
       --cta-fill-start:#eef0ff;
@@ -68,14 +70,76 @@
     .nav-link{ text-decoration:underline; color:var(--fg); font-weight:600; font-size:14px; letter-spacing:.08px; opacity:.92 }
     .nav-link:hover{opacity:1}
 
-    /* Mobile navigation improvements */
+    /* Mobile fixes */
     @media (max-width: 768px) {
-      .topbar { top:12px; right:12px; left:12px; gap:12px; }
-      .nav-logo img { height:34px; }
-      .nav-right { gap:12px; flex-wrap:wrap; }
-      .nav-link { font-size:13px; }
-      .icon-toggle { width:32px; height:32px; }
-      .icon-toggle svg { width:16px; height:16px; }
+      .topbar {
+        top:8px; right:8px; left:8px; gap:8px;
+        flex-wrap:wrap; padding:8px;
+      }
+      .nav-logo img { height:28px; }
+      .nav-right {
+        gap:8px; flex-wrap:wrap;
+        justify-content:center; width:100%;
+      }
+      .nav-link {
+        font-size:12px; padding:4px 8px;
+        border-radius:4px; min-width:40px; text-align:center;
+      }
+      .icon-toggle { width:28px; height:28px; }
+      .icon-toggle svg { width:14px; height:14px; }
+
+      /* Hero mobile fixes */
+      .hero {
+        padding:clamp(16px,4vw,32px);
+        text-align:center;
+      }
+
+      .headline-wrap {
+        width:100%;
+        margin:0 auto;
+      }
+
+      .headline {
+        font-size:clamp(32px,9vw,64px) !important;
+        line-height:1.1;
+        text-align:center;
+      }
+
+      .tagline {
+        font-size:clamp(14px,4vw,18px);
+        line-height:1.4;
+        margin-top:16px;
+        text-align:center;
+        max-width:90%;
+        margin-left:auto;
+        margin-right:auto;
+      }
+
+      .scroll-cue {
+        margin-top:24px;
+      }
+
+      .scroll-cue svg {
+        width:20px;
+        height:20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .topbar {
+        flex-direction:column;
+        align-items:center;
+        gap:6px;
+        padding:6px;
+      }
+
+      .headline {
+        font-size:clamp(28px,8vw,48px) !important;
+      }
+
+      .tagline {
+        font-size:clamp(13px,3.5vw,16px);
+      }
     }
     .icon-toggle{
       width:36px; height:36px; display:grid; place-items:center;
@@ -155,11 +219,61 @@
 
     /* Mobile CTA panel improvements */
     @media (max-width: 768px) {
-      .cta-panel { padding:clamp(48px,10vw,80px) clamp(20px,5vw,40px); }
-      .cta-content h2 { font-size:clamp(28px,8vw,42px); max-width:none; }
-      .cta-content p { font-size:clamp(16px,4vw,20px); margin-bottom:32px; }
-      .scroll-cue { margin-top:20px; }
-      .scroll-cue svg { width:20px; height:20px; }
+      .cta-panel {
+        padding:clamp(40px,8vw,64px) clamp(16px,4vw,32px);
+        text-align:center;
+      }
+      .cta-content h2 {
+        font-size:clamp(24px,7vw,36px);
+        max-width:none;
+        line-height:1.2;
+        margin-bottom:16px;
+      }
+      .cta-content p {
+        font-size:clamp(14px,3.5vw,18px);
+        margin-bottom:24px;
+        line-height:1.4;
+      }
+      .cta {
+        height:48px;
+        padding:0 24px;
+        font-size:15px;
+        border-radius:14px;
+      }
+
+      /* Contact strip mobile */
+      .contact-strip {
+        padding:clamp(32px,6vw,48px) clamp(16px,4vw,32px);
+        text-align:center;
+        flex-direction:column;
+        gap:16px;
+      }
+      .contact-strip p {
+        font-size:clamp(14px,3.5vw,16px);
+      }
+
+      /* Footer mobile */
+      footer {
+        padding:40px clamp(16px,4vw,32px);
+        flex-direction:column;
+        text-align:center;
+        gap:16px;
+        font-size:13px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .cta-content h2 {
+        font-size:clamp(20px,6vw,28px);
+      }
+      .cta-content p {
+        font-size:clamp(13px,3vw,16px);
+      }
+      .cta {
+        height:44px;
+        padding:0 20px;
+        font-size:14px;
+      }
     }
 
     /* Contact strip — direct */
@@ -168,8 +282,16 @@
       display:flex; align-items:center; justify-content:space-between; gap:18px; flex-wrap:wrap;
     }
     .contact-strip p{ margin:0; color:var(--fg-soft) }
+    @media (max-width: 768px) {
+      .contact-strip { padding:clamp(32px,8vw,48px) clamp(20px,5vw,40px); flex-direction:column; text-align:center; gap:20px; }
+      .contact-strip p { font-size:clamp(16px,4vw,18px); }
+    }
 
     footer{ padding:64px clamp(20px,6vw,80px); border-top:1px solid var(--hair); display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; color:var(--muted) }
+    @media (max-width: 768px) {
+      footer { padding:48px clamp(20px,5vw,40px); flex-direction:column; text-align:center; gap:16px; font-size:14px; }
+      footer nav { margin-top:8px; }
+    }
 
     .fallback{ position:absolute; inset:0; z-index:1; display:none; place-items:center; color:var(--muted); font-size:14px }
   </style>
@@ -265,28 +387,42 @@
     // WebGL fallback
     if(!document.createElement('canvas').getContext('webgl')){ document.getElementById('fallback').style.display='grid'; }
 
-    // THREE ribbons (subtle)
+    // THREE ribbons (subtle) - disable on mobile
     const canvas=document.getElementById('scene');
-    const renderer=new THREE.WebGLRenderer({canvas, antialias:true, alpha:true}); renderer.setPixelRatio(Math.min(window.devicePixelRatio,2)); renderer.setSize(innerWidth, innerHeight);
-    const scene=new THREE.Scene(), camera=new THREE.PerspectiveCamera(50, innerWidth/innerHeight, .1, 100); camera.position.set(0,0,8);
-    scene.add(new THREE.AmbientLight(0xffffff,.24)); const rim=new THREE.DirectionalLight(0xffffff,.45); rim.position.set(-3,2,-4); scene.add(rim);
-    const vtx=`uniform float u_time,u_speed,u_amp,u_phase; varying vec2 vUv; void main(){ vUv=uv; vec3 p=position; float t=u_time*u_speed+u_phase; p.z+=sin((p.x*2.3+t))*0.45*u_amp; p.y+=sin((p.x*1.4-t*0.6))*0.1*u_amp; gl_Position=projectionMatrix*modelViewMatrix*vec4(p,1.0); }`;
-    const frg=`precision highp float; varying vec2 vUv; uniform vec3 u_c1,u_c2; uniform float u_soft; void main(){ float g=smoothstep(0.,1.,vUv.x); vec3 col=mix(u_c1,u_c2,g); float edge=smoothstep(0., u_soft, vUv.y)*(1.-smoothstep(1.-u_soft,1.,vUv.y)); gl_FragColor=vec4(col, edge*0.8); }`;
-    function ribbon({w=13,h=4,c1='#6f64ff',c2='#ff6b8a',speed=.45,amp=.9,phase=0,y=0,z=0,rx=-.22}={}) {
-      const geo=new THREE.PlaneGeometry(w,h,320,64);
-      const mat=new THREE.ShaderMaterial({uniforms:{u_time:{value:0},u_speed:{value:speed},u_amp:{value:amp},u_phase:{value:phase},u_c1:{value:new THREE.Color(c1)},u_c2:{value:new THREE.Color(c2)},u_soft:{value:.22}},vertexShader:vtx,fragmentShader:frg,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending});
-      const m=new THREE.Mesh(geo,mat); m.position.set(0,y,z); m.rotation.x=rx; return {mesh:m,mat};
+    const isMobile = window.innerWidth <= 768;
+
+    if (isMobile) {
+      // Hide canvas on mobile
+      canvas.style.display = 'none';
+    } else {
+      const renderer=new THREE.WebGLRenderer({canvas, antialias:true, alpha:true}); renderer.setPixelRatio(Math.min(window.devicePixelRatio,2)); renderer.setSize(innerWidth, innerHeight);
+      const scene=new THREE.Scene(), camera=new THREE.PerspectiveCamera(50, innerWidth/innerHeight, .1, 100); camera.position.set(0,0,8);
+      scene.add(new THREE.AmbientLight(0xffffff,.24)); const rim=new THREE.DirectionalLight(0xffffff,.45); rim.position.set(-3,2,-4); scene.add(rim);
+      const vtx=`uniform float u_time,u_speed,u_amp,u_phase; varying vec2 vUv; void main(){ vUv=uv; vec3 p=position; float t=u_time*u_speed+u_phase; p.z+=sin((p.x*2.3+t))*0.45*u_amp; p.y+=sin((p.x*1.4-t*0.6))*0.1*u_amp; gl_Position=projectionMatrix*modelViewMatrix*vec4(p,1.0); }`;
+      const frg=`precision highp float; varying vec2 vUv; uniform vec3 u_c1,u_c2; uniform float u_soft; void main(){ float g=smoothstep(0.,1.,vUv.x); vec3 col=mix(u_c1,u_c2,g); float edge=smoothstep(0., u_soft, vUv.y)*(1.-smoothstep(1.-u_soft,1.,vUv.y)); gl_FragColor=vec4(col, edge*0.8); }`;
+      function ribbon({w=13,h=4,c1='#6f64ff',c2='#ff6b8a',speed=.45,amp=.9,phase=0,y=0,z=0,rx=-.22}={}) {
+        const geo=new THREE.PlaneGeometry(w,h,320,64);
+        const mat=new THREE.ShaderMaterial({uniforms:{u_time:{value:0},u_speed:{value:speed},u_amp:{value:amp},u_phase:{value:phase},u_c1:{value:new THREE.Color(c1)},u_c2:{value:new THREE.Color(c2)},u_soft:{value:.22}},vertexShader:vtx,fragmentShader:frg,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending});
+        const m=new THREE.Mesh(geo,mat); m.position.set(0,y,z); m.rotation.x=rx; return {mesh:m,mat};
+      }
+      const group=new THREE.Group(); scene.add(group);
+      const palDark=[['#5b4dff','#ffa6a6'],['#6f64ff','#ff6b8a'],['#9a92ff','#ff8aa1']], palLight=[['#4c57ff','#ff8fa9'],['#5d6cff','#ff7a98'],['#85a0ff','#ff95ad']];
+      let ribbons=[];
+      function build(p){
+        group.clear();
+        const a=ribbon({w:15,h:4.6,c1:p[0][0],c2:p[0][1],speed:.3,amp:.8,phase:0,y:-.15,z:-.65,rx:-.16});
+        const b=ribbon({w:14,h:4.2,c1:p[1][0],c2:p[1][1],speed:.5,amp:1.0,phase:1.2,y:0,z:-.25,rx:-.2});
+        const c=ribbon({w:13,h:3.8,c1:p[2][0],c2:p[2][1],speed:.75,amp:1.2,phase:2.2,y:.16,z:.08,rx:-.24});
+        [a,b,c].forEach(l=>group.add(l.mesh));
+        ribbons=[a,b,c];
+      }
+      function applyThemeToRibbons(theme){ (theme==='light'?palLight:palDark).forEach(([c1,c2],i)=>{ ribbons[i].mat.uniforms.u_c1.value=new THREE.Color(c1); ribbons[i].mat.uniforms.u_c2.value=new THREE.Color(c2); }); }
+      window.applyThemeToRibbons = applyThemeToRibbons;
+      const initial=document.documentElement.getAttribute('data-theme')||'dark';
+      build(initial==='light'?palLight:palDark);
+      const clock=new THREE.Clock(); function loop(){ const t=clock.getElapsedTime(); group.rotation.y=Math.sin(t*.08)*.05; group.rotation.x=Math.sin(t*.06)*.035; ribbons.forEach(r=>r.mat.uniforms.u_time.value=t); camera.position.z=8+Math.sin(t*.18)*.2; renderer.render(scene,camera); requestAnimationFrame(loop);} loop();
+      addEventListener('resize',()=>{renderer.setSize(innerWidth,innerHeight); camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix();});
     }
-    const group=new THREE.Group(); scene.add(group);
-    const palDark=[['#5b4dff','#ffa6a6'],['#6f64ff','#ff6b8a'],['#9a92ff','#ff8aa1']], palLight=[['#4c57ff','#ff8fa9'],['#5d6cff','#ff7a98'],['#85a0ff','#ff95ad']];
-    let ribbons=[];
-    function build(p){ group.clear(); const a=ribbon({w:15,h:4.6,c1:p[0][0],c2:p[0][1],speed:.3,amp:.8,phase:0,y:-.15,z:-.65,rx:-.16}); const b=ribbon({w:14,h:4.2,c1:p[1][0],c2:p[1][1],speed:.5,amp:1.0,phase:1.2,y:0,z:-.25,rx:-.2}); const c=ribbon({w:13,h:3.8,c1:p[2][0],c2:p[2][1],speed:.75,amp:1.2,phase:2.2,y:.16,z:.08,rx:-.24}); [a,b,c].forEach(l=>group.add(l.mesh)); ribbons=[a,b,c];}
-    function applyThemeToRibbons(theme){ (theme==='light'?palLight:palDark).forEach(([c1,c2],i)=>{ ribbons[i].mat.uniforms.u_c1.value=new THREE.Color(c1); ribbons[i].mat.uniforms.u_c2.value=new THREE.Color(c2); }); }
-    window.applyThemeToRibbons = applyThemeToRibbons;
-    const initial=document.documentElement.getAttribute('data-theme')||'dark';
-    build(initial==='light'?palLight:palDark);
-    const clock=new THREE.Clock(); function loop(){ const t=clock.getElapsedTime(); group.rotation.y=Math.sin(t*.08)*.05; group.rotation.x=Math.sin(t*.06)*.035; ribbons.forEach(r=>r.mat.uniforms.u_time.value=t); camera.position.z=8+Math.sin(t*.18)*.2; renderer.render(scene,camera); requestAnimationFrame(loop);} loop();
-    addEventListener('resize',()=>{renderer.setSize(innerWidth,innerHeight); camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix();});
 
     /* HEADLINE MICRO-WAVE — ONLY ON HOVER (subtle) */
     (function(){
