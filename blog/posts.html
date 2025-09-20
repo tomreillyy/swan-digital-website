@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<title>Post — Trove Digital</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<style>
+:root{ --bg:#0a0a0c; --fg:#fff; --soft:#f3f4f8; --muted:#c9cbd3; --hair:#ffffff26 }
+html[data-theme="light"]{ --bg:#fff; --fg:#0b0e14; --soft:#0e1117; --muted:#2d313c; --hair:#00000022 }
+*{box-sizing:border-box} html,body{margin:0;height:100%;background:var(--bg);color:var(--fg)}
+body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+a{color:inherit}
+.topbar{position:fixed;top:16px;right:16px;left:16px;z-index:3;display:flex;justify-content:flex-end;gap:18px}
+.nav-right{display:flex;align-items:center;gap:18px}
+.nav-link{text-decoration:underline;color:var(--fg);font-weight:600;font-size:14px;opacity:.92}
+.nav-link:hover{opacity:1}
+.icon-toggle{width:36px;height:36px;display:grid;place-items:center;background:transparent;border:1px solid var(--hair);border-radius:50%}
+.icon-toggle svg{width:18px;height:18px;color:var(--fg)}
+
+.header{ padding: clamp(56px, 12vw, 140px) clamp(20px, 6vw, 80px) 24px }
+.title{ font-family:'Playfair Display',serif; font-size: clamp(36px, 8vw, 96px); margin:0 }
+.meta{ color:var(--muted); margin:10px 0 0 0 }
+
+.main{ border-top:1px solid var(--hair); padding: clamp(24px, 6vw, 48px) clamp(20px, 6vw, 80px) }
+.wrap{ display:grid; grid-template-columns: 1fr; gap:20px }
+.content{ color:var(--soft); line-height:1.6; max-width: 82ch; }
+.content h1,.content h2,.content h3{ color:var(--fg); font-family:'Playfair Display',serif }
+.content pre{ background: color-mix(in oklab, var(--bg) 84%, black); padding:14px; border-radius:12px; overflow:auto; border:1px solid var(--hair) }
+.content code{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace }
+.content img{ max-width:100%; height:auto; border-radius:12px; border:1px solid var(--hair) }
+
+.sidenotes{ color:var(--muted); font-size:14px }
+.note{ padding:8px 0; border-bottom:1px dashed var(--hair) }
+
+@media (min-width: 1100px){
+  .wrap{ grid-template-columns: minmax(0, 820px) 280px }
+  .sidenotes{ position: sticky; top:80px; align-self:start }
+}
+.back{ display:inline-block; margin-top:24px; color:var(--muted); text-decoration:underline }
+</style>
+</head>
+<body>
+<header class="topbar" role="navigation" aria-label="Primary">
+  <div class="nav-right">
+    <a class="nav-link" href="../index.html">Home</a>
+    <a class="nav-link" href="../services.html">Services</a>
+    <a class="nav-link" href="../about.html">About</a>
+    <a class="nav-link" href="index.html">Blog</a>
+    <a class="nav-link" href="mailto:hello@trovedigital.com?subject=Project%20enquiry">Contact</a>
+    <button id="themeToggle" class="icon-toggle" aria-label="Toggle dark/light theme" title="Toggle theme">
+      <svg id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path></svg>
+      <svg id="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:block"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </button>
+  </div>
+</header>
+
+<section class="header">
+  <h1 class="title" id="postTitle">Post</h1>
+  <p class="meta" id="postMeta"></p>
+</section>
+
+<main class="main">
+  <div class="wrap">
+    <article class="content" id="content"></article>
+    <aside class="sidenotes" id="notes"></aside>
+  </div>
+  <a class="back" href="index.html">← Back to Notes</a>
+</main>
+
+<script>
+(function(){const root=document.documentElement,t=document.getElementById('themeToggle'),s=document.getElementById('icon-sun'),m=document.getElementById('icon-moon');const saved=localStorage.getItem('trove-theme');const system=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';const initial=saved||system;root.setAttribute('data-theme',initial);s.style.display=initial==='light'?'block':'none';m.style.display=initial==='light'?'none':'block';t.addEventListener('click',()=>{const next=root.getAttribute('data-theme')==='light'?'dark':'light';root.setAttribute('data-theme',next);localStorage.setItem('trove-theme',next);s.style.display=next==='light'?'block':'none';m.style.display=next==='light'?'none':'block';});})();
+
+(async function(){
+  const params = new URLSearchParams(location.search);
+  const slug = params.get('slug');
+  if(!slug){ document.getElementById('content').textContent='Post not found.'; return; }
+
+  try{
+    const metaRes = await fetch('./posts.json', {cache:'no-store'});
+    const posts = await metaRes.json();
+    const post = posts.find(p=>p.slug===slug);
+    if(post){
+      document.title = `${post.title} — Trove Digital`;
+      document.getElementById('postTitle').textContent = post.title;
+      document.getElementById('postMeta').textContent = new Date(post.date).toLocaleDateString();
+    } else {
+      document.getElementById('postTitle').textContent = slug.replace(/-/g,' ');
+    }
+
+    const mdRes = await fetch(`./posts/${slug}.md`, {cache:'no-store'});
+    if(!mdRes.ok) throw new Error('Markdown not found');
+    const md = await mdRes.text();
+    marked.setOptions({ breaks:true, gfm:true });
+    const html = marked.parse(md);
+    document.getElementById('content').innerHTML = html;
+
+    // sidenotes from blockquotes and h2s
+    const notes = [];
+    document.querySelectorAll('#content blockquote, #content h2').forEach(el=>{
+      const text = el.textContent.trim();
+      if(text) notes.push(text);
+    });
+    document.getElementById('notes').innerHTML = notes.map(n=>`<div class="note">${n}</div>`).join('');
+
+  }catch(e){
+    console.error('Post load error', e);
+    document.getElementById('content').textContent='Unable to load this post.';
+  }
+})();
+</script>
+</body>
+</html>

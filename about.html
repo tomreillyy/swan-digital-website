@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<title>About — Trove Digital | Small Studio Making Singular Web Pieces</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!-- SEO Meta Tags -->
+<meta name="description" content="We're a small studio making singular web pieces. Started in a shed at home, we work with SMEs and founders who want their site to feel considered, load fast, and help them stand out." />
+<meta name="keywords" content="web design studio, bespoke websites, custom web development, SME web solutions, digital agency about" />
+<meta name="author" content="Trove Digital" />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://trovedigital.com/about.html" />
+
+<!-- Open Graph Meta Tags -->
+<meta property="og:title" content="About — Trove Digital | Small Studio Making Singular Web Pieces" />
+<meta property="og:description" content="We're a small studio making singular web pieces. We work with SMEs and founders who want their site to feel considered, load fast, and help them stand out." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://trovedigital.com/about.html" />
+<meta property="og:site_name" content="Trove Digital" />
+
+<!-- Twitter Card Meta Tags -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="About — Trove Digital | Small Studio Making Singular Web Pieces" />
+<meta name="twitter:description" content="We're a small studio making singular web pieces. We work with SMEs and founders who want their site to feel considered, load fast, and help them stand out." />
+
+<!-- Additional SEO -->
+<meta name="theme-color" content="#6f64ff" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+<style>
+:root{ --bg:#0a0a0c; --fg:#fff; --soft:#f3f4f8; --muted:#c9cbd3; --hair:#ffffff26; --accent:#6f64ff }
+html[data-theme="light"]{ --bg:#ffffff; --fg:#0b0e14; --soft:#0e1117; --muted:#2d313c; --hair:#00000022; --accent:#4c57ff }
+*{box-sizing:border-box} html,body{margin:0;height:100%;background:var(--bg);color:var(--fg)}
+body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+a{color:inherit}
+.topbar{position:fixed;top:16px;right:16px;left:16px;z-index:3;display:flex;justify-content:flex-end;gap:18px}
+.nav-right{display:flex;align-items:center;gap:18px}
+.nav-link{text-decoration:underline;color:var(--fg);font-weight:600;font-size:14px;opacity:.92}
+.nav-link:hover{opacity:1}
+.icon-toggle{width:36px;height:36px;display:grid;place-items:center;background:transparent;border:1px solid var(--hair);border-radius:50%;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.icon-toggle svg{width:18px;height:18px;color:var(--fg)}
+
+/* Mobile navigation */
+@media (max-width: 768px) {
+  .topbar { top:12px; right:12px; left:12px; gap:12px; }
+  .nav-right { gap:12px; flex-wrap:wrap; }
+  .nav-link { font-size:13px; }
+  .icon-toggle { width:32px; height:32px; }
+  .icon-toggle svg { width:16px; height:16px; }
+}
+
+.header{
+  min-height:60vh; display:grid; align-items:end; padding:clamp(40px,8vw,100px) clamp(20px,6vw,80px);
+  position:relative; overflow:hidden; border-bottom:1px solid var(--hair);
+}
+.header::before, .header::after{
+  content:""; position:absolute; inset:-20%; background:
+    conic-gradient(from 0deg at 50% 50%, color-mix(in oklab, var(--accent) 40%, transparent) 0 90deg, transparent 0),
+    conic-gradient(from 90deg at 50% 50%, color-mix(in oklab, var(--accent) 20%, transparent) 0 90deg, transparent 0);
+  mix-blend-mode:plus-lighter; opacity:.18; transform:rotate(10deg) scale(1.05); pointer-events:none;
+}
+.header::after{ transform:rotate(-8deg) scale(1.1); opacity:.12 }
+.kicker{ color:var(--muted); font-size:12px; letter-spacing:.2px; text-transform:uppercase; margin:0 0 8px 0 }
+.title{ font-family:'Playfair Display',serif; font-size: clamp(36px, 8vw, 96px); line-height:.92; margin:0; position:relative }
+
+.lede{ padding:clamp(28px,6vw,60px) clamp(20px,6vw,80px); color:var(--soft); max-width:72ch; font-size:clamp(16px,2.1vw,20px) }
+
+.section{ border-top:1px solid var(--hair); padding: clamp(24px,6vw,64px) clamp(20px,6vw,80px) }
+.grid{ max-width:1100px; margin:0 auto; display:grid; gap:20px }
+.row{ display:grid; grid-template-columns:160px 1fr; gap:18px; align-items:start }
+.label{ color:var(--muted); font-weight:700; font-size:12px; letter-spacing:.2px; text-transform:uppercase }
+.text{ color:var(--soft); line-height:1.6 }
+
+.cta{
+  display:inline-flex;
+  height:40px;               /* thinner */
+  padding:0 14px;            /* narrower horizontally */
+  align-items:center;
+  gap:10px;
+  border-radius:10px;
+  font-weight:800;
+  font-size:14.5px;
+  color:#0b0e14;
+  background:linear-gradient(135deg,#f6f7ff,#dfe3ff);
+  border:1px solid rgba(0,0,0,.22);
+  text-decoration:none;
+}
+footer{ padding:64px clamp(20px,6vw,80px); border-top:1px solid var(--hair); display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; color:var(--muted) }
+
+/* Mobile improvements for about page */
+@media (max-width: 768px) {
+  .header { min-height:50vh; padding:clamp(30px,6vw,60px) clamp(20px,5vw,40px); text-align:center; }
+  .title { font-size:clamp(28px,9vw,48px); text-align:center; }
+  .lede { padding:clamp(20px,5vw,40px) clamp(20px,5vw,40px); font-size:clamp(15px,4vw,18px); text-align:center; }
+  .section { padding:clamp(20px,5vw,40px) clamp(20px,5vw,40px); }
+  .row { grid-template-columns:1fr; gap:12px; text-align:center; }
+  .label { font-size:11px; }
+  .text { font-size:15px; }
+  .cta { height:44px; padding:0 20px; font-size:15px; margin:20px auto 0 auto; }
+  footer { padding:48px clamp(20px,5vw,40px); flex-direction:column; text-align:center; gap:16px; font-size:14px; }
+}
+</style>
+</head>
+<body>
+  <header class="topbar" role="navigation" aria-label="Primary">
+    <div class="nav-right">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="services.html">Services</a>
+      <a class="nav-link" href="about.html" aria-current="page">About</a>
+      <a class="nav-link" href="blog/index.html">Blog</a>
+      <a class="nav-link" href="mailto:hello@trovedigital.com?subject=Project%20enquiry">Contact</a>
+      <button id="themeToggle" class="icon-toggle" aria-label="Toggle dark/light theme" title="Toggle theme">
+        <svg id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+        </svg>
+        <svg id="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:block">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <section class="header">
+    <p class="kicker">About</p>
+    <h1 class="title">We’re a small studio making singular web pieces.</h1>
+  </section>
+
+  <p class="lede">We started in a shed at home. The hunch: in the age of AI, sameness is cheap and everywhere—so taste, restraint and finish matter more. We work with SMEs and founders who want their site or internal tool to feel considered, load fast, and help them stand out.</p>
+
+  <section class="section">
+    <div class="grid">
+      <div class="row">
+        <div class="label">What we do</div>
+        <div class="text">
+          Websites that don’t read like templates. Custom apps that teams actually use. Product strategy, UX and front-end engineering to get it shipped.
+        </div>
+      </div>
+      <div class="row">
+        <div class="label">How we work</div>
+        <div class="text">Small scope, short feedback loops, honest edits. We prototype with real content and remove anything that doesn’t help the story. You speak to the people doing the work.</div>
+      </div>
+      <div class="row">
+        <div class="label">Why it matters</div>
+        <div class="text">AI makes it easy to publish more. It also makes it easy to look the same. We help you be unmistakable—through typography, composition and movement that read as human.</div>
+      </div>
+      <a class="cta" href="mailto:hello@trovedigital.com?subject=Project%20enquiry">Contact us</a>
+    </div>
+  </section>
+
+  <footer>
+    <div>© Trove Digital — handcrafted on the web</div>
+    <nav>
+      <a href="index.html">Home</a> ·
+      <a href="services.html">Services</a> ·
+      <a href="blog/index.html">Blog</a> ·
+      <a href="mailto:hello@trovedigital.com">Email</a>
+    </nav>
+  </footer>
+
+<script>
+(function(){
+  const root=document.documentElement,t=document.getElementById('themeToggle'),s=document.getElementById('icon-sun'),m=document.getElementById('icon-moon');
+  const saved=localStorage.getItem('trove-theme');
+  const system=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';
+  const initial=saved||system;
+  root.setAttribute('data-theme',initial);
+  s.style.display=initial==='light'?'block':'none';
+  m.style.display=initial==='light'?'none':'block';
+  t.addEventListener('click',()=>{
+    const next=root.getAttribute('data-theme')==='light'?'dark':'light';
+    root.setAttribute('data-theme',next);
+    localStorage.setItem('trove-theme',next);
+    s.style.display=next==='light'?'block':'none';
+    m.style.display=next==='light'?'none':'block';
+  });
+})();
+</script>
+</body>
+</html>

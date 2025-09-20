@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<title>Blog — Trove Digital</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+<style>
+:root{ --bg:#0a0a0c; --fg:#fff; --soft:#f3f4f8; --muted:#c9cbd3; --hair:#ffffff26 }
+html[data-theme="light"]{ --bg:#fff; --fg:#0b0e14; --soft:#0e1117; --muted:#2d313c; --hair:#00000022 }
+*{box-sizing:border-box} html,body{margin:0;height:100%;background:var(--bg);color:var(--fg)}
+body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+a{color:inherit}
+.topbar{position:fixed;top:16px;right:16px;left:16px;z-index:3;display:flex;justify-content:flex-end;gap:18px}
+.nav-right{display:flex;align-items:center;gap:18px}
+.nav-link{text-decoration:underline;color:var(--fg);font-weight:600;font-size:14px;opacity:.92}
+.nav-link:hover{opacity:1}
+.icon-toggle{width:36px;height:36px;display:grid;place-items:center;background:transparent;border:1px solid var(--hair);border-radius:50%}
+.icon-toggle svg{width:18px;height:18px;color:var(--fg)}
+
+.mast{ padding: clamp(56px, 12vw, 140px) clamp(20px, 6vw, 80px) 24px }
+.mast h1{ font-family:'Playfair Display',serif; font-size: clamp(36px, 8vw, 96px); margin:0 }
+.mast p{ color:var(--soft); max-width:70ch }
+
+.list{ border-top:1px solid var(--hair); padding: clamp(24px, 6vw, 48px) clamp(20px, 6vw, 80px) }
+.item{ display:grid; grid-template-columns: 120px 1fr; gap:18px; padding:16px 0; border-bottom:1px solid var(--hair); text-decoration:none }
+.date{ color:var(--muted); font-size:12px; letter-spacing:.2px; text-transform:uppercase }
+.title{ font-family:'Playfair Display',serif; font-size: clamp(20px, 3.2vw, 32px); margin:0 }
+.excerpt{ color:var(--soft); margin:6px 0 0 0; max-width:70ch }
+
+.empty{ color:var(--muted); padding:24px 0 }
+</style>
+</head>
+<body>
+<header class="topbar" role="navigation" aria-label="Primary">
+  <div class="nav-right">
+    <a class="nav-link" href="../index.html">Home</a>
+    <a class="nav-link" href="../services.html">Services</a>
+    <a class="nav-link" href="../about.html">About</a>
+    <a class="nav-link" href="index.html" aria-current="page">Blog</a>
+    <a class="nav-link" href="mailto:hello@trovedigital.com?subject=Project%20enquiry">Contact</a>
+    <button id="themeToggle" class="icon-toggle" aria-label="Toggle dark/light theme" title="Toggle theme">
+      <svg id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path></svg>
+      <svg id="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:block"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </button>
+  </div>
+</header>
+
+<section class="mast">
+  <h1>Notes</h1>
+  <p>Short, honest entries on choices, trade-offs and what we learn while shipping.</p>
+</section>
+
+<main class="list" id="list" aria-label="Posts">
+  <div class="empty" id="empty">No posts yet.</div>
+</main>
+
+<script>
+(function(){const root=document.documentElement,t=document.getElementById('themeToggle'),s=document.getElementById('icon-sun'),m=document.getElementById('icon-moon');const saved=localStorage.getItem('trove-theme');const system=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';const initial=saved||system;root.setAttribute('data-theme',initial);s.style.display=initial==='light'?'block':'none';m.style.display=initial==='light'?'none':'block';t.addEventListener('click',()=>{const next=root.getAttribute('data-theme')==='light'?'dark':'light';root.setAttribute('data-theme',next);localStorage.setItem('trove-theme',next);s.style.display=next==='light'?'block':'none';m.style.display=next==='light'?'none':'block';});})();
+(async function(){
+  try{
+    const res = await fetch('./posts.json', {cache:'no-store'});
+    const posts = await res.json();
+    const list = document.getElementById('list');
+    const empty = document.getElementById('empty');
+    if (!Array.isArray(posts) || posts.length===0){ empty.style.display='block'; return; }
+    empty.style.display='none';
+    posts.sort((a,b)=> new Date(b.date)-new Date(a.date));
+    list.innerHTML = posts.map(p=>`
+      <a class="item" href="post.html?slug=${encodeURIComponent(p.slug)}">
+        <div class="date">${new Date(p.date).toLocaleDateString()}</div>
+        <div>
+          <h2 class="title">${p.title}</h2>
+          ${p.excerpt?`<p class="excerpt">${p.excerpt}</p>`:''}
+        </div>
+      </a>
+    `).join('');
+  }catch(e){ console.error('Blog index error', e); }
+})();
+</script>
+</body>
+</html>
