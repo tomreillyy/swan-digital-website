@@ -27,6 +27,10 @@
 <!-- Additional SEO -->
 <meta name="theme-color" content="#ff6b8a" />
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="trove_logo_only-removebg-preview.png" />
+<link rel="apple-touch-icon" href="trove_logo_only-removebg-preview.png" />
 <style>
 :root{
   --bg:#0a0a0c; --fg:#fff; --muted:#c9cbd3; --hair:#ffffff26; --accent:#ff6b8a;
@@ -41,7 +45,19 @@ a{color:inherit;text-decoration:none}
 
 .topbar{
   position:fixed;top:16px;right:16px;left:16px;z-index:3;
-  display:flex;justify-content:flex-end;gap:18px
+  display:flex;align-items:center;justify-content:space-between;gap:18px
+}
+.nav-logo{display:flex;align-items:center;}
+.nav-logo img{
+  height:40px;width:auto;
+  transition:transform .3s ease, filter .3s ease;
+  animation:logoFloat 4s ease-in-out infinite;
+}
+.nav-logo:hover img{transform:scale(1.1) rotate(2deg); filter:brightness(1.1);}
+
+@keyframes logoFloat {
+  0%, 100% { transform:translateY(0px) rotate(0deg); }
+  50% { transform:translateY(-2px) rotate(1deg); }
 }
 .nav-right{display:flex;align-items:center;gap:18px}
 .nav-link{
@@ -59,6 +75,7 @@ a{color:inherit;text-decoration:none}
 /* Mobile navigation */
 @media (max-width: 768px) {
   .topbar { top:12px; right:12px; left:12px; gap:12px; }
+  .nav-logo img { height:34px; }
   .nav-right { gap:12px; flex-wrap:wrap; }
   .nav-link { font-size:13px; }
   .icon-toggle { width:32px; height:32px; }
@@ -204,6 +221,9 @@ footer{
 <body>
 
 <header class="topbar" role="navigation" aria-label="Primary">
+  <a href="index.html" class="nav-logo" aria-label="Trove Digital Home">
+    <img src="trove_logo_only-removebg-preview.png" alt="Trove Digital Logo" />
+  </a>
   <div class="nav-right">
     <a class="nav-link" href="index.html">Home</a>
     <a class="nav-link" href="services.html" aria-current="page">Services</a>
