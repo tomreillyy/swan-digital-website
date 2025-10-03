@@ -10,7 +10,7 @@ Go look at five competitors in your space right now. I'll wait.
 
 You just saw the same site five times, didn't you? Same clean layout. Same stock photo of a handshake or a diverse team in a bright office. Same promise to deliver "quality service" with "integrity" and "customer focus." Same everything.
 
-## Here's the uncomfortable truth: if your website could work for any business in your category, it's working for none of them.
+Here's the uncomfortable truth: if your website could work for any business in your category, it's working for none of them.
 
 You spent all that money to blend in. To look "professional." To not make anyone uncomfortable. And now you're invisible.
 
@@ -20,7 +20,7 @@ Wrong question. The real question is: Can you afford to look identical?
 
 Because that's where you are. You and your competitors have all climbed into the same uniform, and now you're confused why customers choose on price instead of value.
 
-## What actually differentiates a small business isn't polish. It's proof that a specific human is behind it.
+What actually differentiates a small business isn't polish. It's proof that a specific human is behind it.
 
 Not "our team" — you. Not "we believe" — why you started this thing. Not stock photos of an office you don't have — the actual room where you work. Not AI-smoothed copy about "excellence" — your actual words about what you've learned getting your hands dirty.
 
@@ -32,7 +32,7 @@ You have one asset your competitors can't copy: you actually did this work. You 
 
 And you're hiding all of it behind the same corporate-speak everyone else is using.
 
-## Here's what happens if you don't change this:
+Here's what happens if you don't change this:
 
 You keep spending money on a website that looks like everyone else's. Customers keep treating you like a commodity. You compete on price. Your margins shrink. Eventually, someone with lower overhead or better funding grinds you down.
 
